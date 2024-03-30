@@ -1,0 +1,22 @@
+{
+  "name": "members-only",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www",
+    "build-css": "npx tailwindcss --minify -i ./src/input.css -o ./public/stylesheets/style.css",
+    "startserver": "DEBUG=members-only:* npm run dev"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "^4.19.2",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.3"
+  }
+}
