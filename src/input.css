@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.arrow-list li::marker {
+  content: "» ";
+  color: #4f46e5;
+  font-size: 1.1rem;
+}
+
+#menu-toggler {
+  background-image: url("../images/hamburger.svg");
+  width: 30px;
+  height: 30px;
+}
+
+.menu-active {
+  background: center/70% no-repeat url(../images/close.svg) !important;
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-indigo-600 cursor-pointer text-white text-center text-sm block px-4 py-2 uppercase tracking-wider font-medium shadow-md rounded-md transition-[transform,background] duration-500 hover:bg-indigo-700 active:scale-90;
+  }
+}
