@@ -1,5 +1,14 @@
 extends layout
 
 block content
-  h1(class="text-3xl font-bold underline")= title
-  p Welcome to #{title}
+  main(class="flex flex-col items-center md:items-start justify-center gap-1 px-2 md:p-0 min-h-[84vh]")
+      h1(class="font-semibold text-2xl md:text-6xl") Welcome to #[span(class="text-indigo-600") Members]Only
+      p(class="text-center md:text-start md:text-xl md:pt-2") The exclusive clubhouse where #[span(class="text-indigo-600 font-semibold") members] #[span(class="block md:hidden")] can write anonymous posts
+
+      ul(class="arrow-list list-inside flex flex-col gap-2 mt-8")
+        li From the outside, #[span(class="text-indigo-600 font-semibold") anyone] can see messages and wonder who wrote them.
+        li From the inside, #[span(class="text-indigo-600 font-semibold") anyone] can write new messages.
+        li Only #[span(class="text-indigo-600 font-semibold") members] of the clubhouse can see who the author of a messages is and when it was written.
+        li Only trusted #[span(class="text-indigo-600 font-semibold") admins] can moderate the page by deleting elements.
+
+      a(href="/messages" class="bg-indigo-600 cursor-pointer text-white text-center text-sm mt-8 block px-4 py-2 uppercase tracking-wider font-semibold shadow-md rounded-md transition-[transform,background] duration-500 hover:bg-indigo-700 active:scale-90 md:w-full md:px-7 md:py-3") Message
