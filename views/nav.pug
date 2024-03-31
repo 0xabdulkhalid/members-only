@@ -1,0 +1,22 @@
+nav(class="flex justify-center items-center") 
+    div(class="md:hidden")
+        button(id="menu-toggler" onclick="toggle()" aria-label="Toggle Menu")
+
+        ul(id="navMenu" class="flex transition-opacity invisible opacity-0 duration-500 gap-3 p-4 bg-gray-200 absolute top-12 left-0 w-full items-center")
+            li(class="w-full"): a(href="#" class="btn-primary") Sign Up
+            li(class="w-full"): a(href="#" class="btn-primary") Login
+    
+    ul(class="items-center gap-2 hidden md:flex")
+            li: a(href="#" class="btn-primary") Sign Up
+            li: a(href="#" class="btn-primary") Login
+
+
+script.
+    const btn = document.getElementById('menu-toggler');
+    const navMenu = document.getElementById('navMenu');
+
+    function toggle () {
+        navMenu.classList.toggle('opacity-0');
+        navMenu.classList.toggle('invisible');
+        btn.classList.toggle('menu-active')
+    }
