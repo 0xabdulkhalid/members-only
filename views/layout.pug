@@ -1,7 +1,16 @@
 doctype html
-html
+html(lang='en')
   head
     title= title
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='preconnect' href='https://fonts.googleapis.com')
+    link(rel='preconnect' href='https://fonts.gstatic.com' crossorigin='')
+    link(href='https://fonts.googleapis.com/css2?family=Rubik:wght@300..900&display=swap' rel='stylesheet')
     link(rel='stylesheet', href='/stylesheets/style.css')
-  body
+  body(class="bg-gray-50 min-h-screen text-[#475569] relative")
+    header(class="flex justify-between p-2")
+      a(href="/" class="text-2xl font-semibold transition-transform active:scale-95") #[span(class="text-indigo-600") Members]Only
+      block nav
     block content
+    footer(class="absolute bottom-3 w-full text-center") &copy; Copyright 2024 - #[a(href="https://www.github.com/0xabdulkhalid" class="text-indigo-600 font-medium") 0xabdulkhalid]
