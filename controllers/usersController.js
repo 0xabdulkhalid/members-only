@@ -19,3 +19,12 @@ exports.create_user = asyncHandler(async (req, res, next) => {
     return res.redirect("/");
   });
 });
+
+exports.logout_user = (req, res, next) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
+};
