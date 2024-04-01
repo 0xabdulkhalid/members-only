@@ -5,6 +5,7 @@ const passport = require("passport");
 const createError = require("http-errors");
 // const logger = require("morgan");
 const mongoose = require("mongoose");
+const MongoStore = require("connect-mongo");
 require("dotenv").config();
 const indexRouter = require("./routes/index");
 const userRouter = require("./routes/user");
@@ -27,6 +28,16 @@ app.use(
     secret: process.env.SESSION_KEY,
     resave: false,
     saveUninitialized: false,
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGO_URI,
+      client: mongoose.connection,
+      stringify: false,
+      autoRemove: "interval",
+      autoRemoveInterval: 60,
+    }),
+    cookie: {
+      maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days in milliseconds
+    },
   })
 );
 app.use(passport.session());
