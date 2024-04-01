@@ -20,7 +20,12 @@ exports.create_user = asyncHandler(async (req, res, next) => {
   });
 });
 
-exports.logout_user = (req, res, next) => {
+exports.login_user = passport.authenticate("local", {
+  successRedirect: "/",
+  failureRedirect: "/user/login",
+});
+
+exports.logout_user = async (req, res, next) => {
   req.logout((err) => {
     if (err) {
       return next(err);

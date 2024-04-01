@@ -4,19 +4,19 @@ nav(class="flex justify-center items-center")
 
         ul(id="navMenu" class="flex transition-opacity invisible opacity-0 duration-500 gap-3 p-4 bg-gray-200 absolute top-12 left-0 w-full items-center")
             if user 
-                li(class="w-full"): a(href="/user/membership" class="btn-primary") Sign Up
-                li(class="w-full"): a(href="/user/logout" class="btn-primary") Logout
+                li(class="w-full"): a(href="/user/membership-subscription" class="btn-primary") Sign Up
+                li(class="w-full"): a(href="/user/log-out" class="btn-primary") Logout
             else 
                 li(class="w-full"): a(href="/user/sign-up" class="btn-primary") Sign Up
-                li(class="w-full"): a(href="#" class="btn-primary") Login
+                li(class="w-full"): a(href="/user/login" class="btn-primary") Login
     
     ul(class="items-center gap-2 hidden md:flex")
             if user 
-                li: a(href="/user/membership" class="btn-primary") Become a Member
-                li: a(href="/user/logout" class="btn-primary") Logout
+                li: a(href="/user/membership-subscription" class="btn-primary") Become a Member
+                li: a(href="/user/log-out" class="btn-primary") Logout
             else 
                 li: a(href="/user/sign-up" class="btn-primary") Sign Up
-                li: a(href="#" class="btn-primary") Login
+                li: a(href="/user/login" class="btn-primary") Login
 
 
 script.
