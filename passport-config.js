@@ -3,9 +3,10 @@ const LocalStrategy = require("passport-local").Strategy;
 const User = require("./models/user");
 
 passport.use(
-  new LocalStrategy(async (mail, password, done) => {
+  new LocalStrategy(async (username, password, done) => {
     try {
-      const user = await User.findOne({ mail: mail });
+      // Naming mail as "username" is not appropriate, but using "passport-local" strategy forces me to do so
+      const user = await User.findOne({ mail: username });
       if (!user) {
         return done(null, false, { message: "Incorrect mail" });
       }
@@ -14,6 +15,7 @@ passport.use(
       }
       return done(null, user);
     } catch (err) {
+      console.log(err);
       return done(err);
     }
   })

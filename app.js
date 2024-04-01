@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const session = require("express-session");
-const passport = require("./passport-config");
+const passport = require("passport");
 const createError = require("http-errors");
 // const logger = require("morgan");
 const mongoose = require("mongoose");
@@ -26,7 +26,7 @@ app.use(
   session({
     secret: process.env.SESSION_KEY,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
   })
 );
 app.use(passport.session());
@@ -34,8 +34,15 @@ app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use((req, res, next) => {
+  res.locals.user = req.user;
+  next();
+});
+
 app.use("/", indexRouter);
 app.use("/user", userRouter);
+
+require("./passport-config");
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
