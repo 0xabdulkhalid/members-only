@@ -1,0 +1,23 @@
+extends layout 
+
+block content
+    h1(class="font-semibold text-indigo-500 mb-2 text-3xl md:text-5xl md:mb-4") Sign Up 
+    form(class="w-full px-2" action="" method="POST")
+        div(class="md:grid grid-cols-2 gap-3") 
+            div
+                label(for="first-name") First Name
+                input(name="firstName" required id="first-name" placeholder="Abdul")
+            div 
+                label(for="last-name") Last Name
+                input(name="lastName" required id="last-name" placeholder="Khalid")
+        div 
+            label(for="mail") Mail
+            input(name="mail" required id="mail" type="mail" placeholder="0xabdulkhalid@gmail.com")  
+        div(class="md:grid grid-cols-2 gap-3") 
+            div 
+                label(for="password") Password 
+                input(name="password" required id="password" type="password")
+            div 
+                label(for="confirm") Confirm Password 
+                input(name="confirm" required id="confirm" type="password")
+        button(class="btn-primary mt-6 mx-auto mb-6 md:w-full md:py-3 md:tracking-widest") Submit
