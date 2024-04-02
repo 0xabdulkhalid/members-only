@@ -14,6 +14,13 @@
   height: 30px;
 }
 
+label {
+  display: block;
+  font-weight: 500;
+  font-size: 1rem;
+  margin: 0.8rem 0 0.3rem 0;
+}
+
 .menu-active {
   background: center/70% no-repeat url(../images/close.svg) !important;
 }
@@ -21,5 +28,9 @@
 @layer components {
   .btn-primary {
     @apply bg-indigo-600 cursor-pointer text-white text-center text-sm block px-4 py-2 uppercase tracking-wider font-medium shadow-md rounded-md transition-[transform,background] duration-500 hover:bg-indigo-700 active:scale-90;
+  }
+
+  input {
+    @apply p-2 bg-indigo-50 w-full outline outline-indigo-500 outline-1 text-indigo-800 rounded focus-visible:outline focus-visible:outline-indigo-500 focus-visible:outline-2;
   }
 }
