@@ -10,8 +10,8 @@ html(lang='en')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body(class="bg-gray-50 min-h-screen text-gray-700 text-sm md:text-base relative md:max-w-4xl md:mx-auto")    
     header(class="flex z-10 bg-white sticky top-0 items-center justify-between p-2 md:py-3 border-b border-solid border-b-gray-300 mb-2 md:mb-0")
-      a(href="/" class="text-xl md:text-2xl font-semibold transition-transform active:scale-95") #[span(class="text-indigo-600") Members]Only
+      a(href="/" class="text-xl md:text-2xl font-semibold transition-transform active:scale-95") #[span(class="text-primary") Members]Only
       include nav
-    main(class="flex flex-col items-center md:items-start justify-center gap-1 px-2 md:p-0 min-h-[84vh]")
+    main(class="flex flex-col items-center justify-center gap-1 px-2 md:max-w-2xl md:mx-auto min-h-[83vh]")
       block content
-    footer(class="absolute bottom-0 w-full text-center py-3 text-sm md:text-base md:py-4 border-t border-solid border-t-gray-300") &copy; Copyright 2024 - #[a(href="https://www.github.com/0xabdulkhalid" class="text-indigo-600 font-medium") 0xabdulkhalid]
+    footer(class="absolute bottom-0 w-full text-center py-3 text-sm md:text-base md:py-4 border-t border-solid border-t-gray-300") &copy; Copyright 2024 - #[a(href="https://www.github.com/0xabdulkhalid" class="text-primary font-medium") 0xabdulkhalid]

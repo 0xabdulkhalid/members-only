@@ -27,10 +27,10 @@ label {
 
 @layer components {
   .btn-primary {
-    @apply bg-indigo-600 cursor-pointer text-white text-center text-sm block px-4 py-2 uppercase tracking-wider font-medium shadow-md rounded-md transition-[transform,background] duration-500 hover:bg-indigo-700 active:scale-90;
+    @apply bg-primary cursor-pointer text-white text-center text-sm block px-4 py-2 uppercase tracking-wider font-medium shadow-md rounded-md transition-[transform,background] duration-500 hover:bg-indigo-700 active:scale-90;
   }
 
   input {
-    @apply p-2 bg-indigo-50 w-full outline outline-indigo-500 outline-1 text-indigo-800 rounded focus-visible:outline focus-visible:outline-indigo-500 focus-visible:outline-2;
+    @apply p-2 bg-indigo-50 w-full outline outline-primary outline-1 text-indigo-800 rounded focus-visible:outline focus-visible:outline-primary focus-visible:outline-2;
   }
 }
