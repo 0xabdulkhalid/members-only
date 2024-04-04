@@ -4,7 +4,10 @@ nav(class="flex justify-center items-center")
 
         ul(id="navMenu" class="flex transition-opacity invisible opacity-0 duration-500 gap-3 p-4 bg-gray-200 absolute top-12 left-0 w-full items-center")
             if user 
-                li(class="w-full"): a(href="/user/membership-subscription" class="btn-primary") Sign Up
+                if !user.Member 
+                    li(class="w-full"): a(href="/user/join-club" class="btn-primary") Join The Club
+                if user.Member && !user.isAdmin
+                    li(class="w-full"): a(href="/user/become-admin" class="btn-primary") Become an Admin
                 li(class="w-full"): a(href="/user/log-out" class="btn-primary") Logout
             else 
                 li(class="w-full"): a(href="/user/sign-up" class="btn-primary") Sign Up
@@ -12,11 +15,14 @@ nav(class="flex justify-center items-center")
     
     ul(class="items-center gap-2 hidden md:flex")
             if user 
-                li: a(href="/user/membership-subscription" class="btn-primary") Become a Member
+                if !user.Member 
+                    li: a(href="/user/join-club" class="btn-primary") Join The Club
+                if user.Member && !user.isAdmin
+                    li: a(href="/user/become-admin" class="btn-primary") Become an Admin
                 li: a(href="/user/log-out" class="btn-primary") Logout
             else 
-                li: a(href="/user/sign-up" class="btn-primary") Sign Up
-                li: a(href="/user/login" class="btn-primary") Login
+                li: a(href="/user/sign-up" class="btn-primary text-[.85rem]") Sign Up
+                li: a(href="/user/login" class="btn-primary text-[.85rem]") Login
 
 
 script.
