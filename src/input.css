@@ -8,6 +8,11 @@
   font-size: 1.1rem;
 }
 
+:is(button, a):focus-visible {
+  outline: #4f46e5 dotted 3px;
+  outline-offset: 0.25rem;
+}
+
 #menu-toggler {
   background-image: url("../images/hamburger.svg");
   width: 30px;
