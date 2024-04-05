@@ -10,6 +10,12 @@ router.get("/login", (req, res, next) => {
   res.render("login");
 });
 
+router.get("/join-club", (req, res, next) => {
+  res.render("join-club");
+});
+
+router.post("/join-club", usersController.become_member);
+
 router.post("/sign-up", usersController.create_user);
 
 router.post("/login", usersController.login_user);
