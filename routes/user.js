@@ -14,7 +14,13 @@ router.get("/join-club", (req, res, next) => {
   res.render("join-club");
 });
 
+router.get("/become-admin", (req, res, next) => {
+  res.render("become-admin");
+});
+
 router.post("/join-club", usersController.become_member);
+
+router.post("/become-admin", usersController.become_admin);
 
 router.post("/sign-up", usersController.create_user);
 

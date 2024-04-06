@@ -43,3 +43,13 @@ exports.become_member = asyncHandler(async (req, res, next) => {
   }
   return res.redirect("/user/join-club");
 });
+
+exports.become_admin = asyncHandler(async (req, res, next) => {
+  if (process.env.ADMIN_KEY === req.body.passcode) {
+    await User.findByIdAndUpdate(req.user._id, {
+      isAdmin: true,
+    });
+    return res.redirect("/");
+  }
+  return res.redirect("/user/become-admin");
+});
