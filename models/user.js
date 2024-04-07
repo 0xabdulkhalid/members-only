@@ -10,5 +10,9 @@ const UserSchema = new Schema({
   isAdmin: { type: Boolean, required: true, default: false },
 });
 
+UserSchema.virtual("fullname").get(function () {
+  return `${this.firstName} ${this.lastName}`;
+});
+
 const User = mongoose.model("User", UserSchema);
 module.exports = User;
