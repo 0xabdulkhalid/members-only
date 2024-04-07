@@ -5,12 +5,16 @@ block content
         if messages.length 
             each message in messages
                 div(class="-z-10 px-16") 
-                    div(class="flex gap-2 mb-3 items-center") 
-                        div(class="w-8 h-8 rounded-full user")
-                        p(class="font-medium")=message.author
+                    if user.isMember || user.isAdmin 
+                        div(class="flex gap-2 mb-3 items-center") 
+                            div(class="w-8 h-8 rounded-full user")
+                            p(class="font-medium")=message.author
                     div(class="rounded-md outline outline-1 outline-primary bg-indigo-100 p-2 md:px-4 md:py-3") 
-                        p(class="text-gray-900")=message.text 
-                        p(class="text-xs text-end text-gray-600 mt-3")=message.createdAt.toLocaleString()
+                        p(class="text-gray-900")=message.text
+                        if user.isMember || user.isAdmin 
+                            p(class="text-xs text-end text-gray-600 mt-3")=message.createdAt.toLocaleString()
+        else 
+            p(class="self-center text-lg") There's no messages here, please check out later.
     div(class="w-full pb-3 md:pb-8 px-4 md:px-8 shadow-[0_-20px_20px_#f9fafb] bg-gray-50 absolute bottom-0") 
         form(class="w-full flex gap-2" action="" method="POST")
             label(for="content" class="sr-only") Message
