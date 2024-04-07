@@ -19,6 +19,20 @@
   height: 30px;
 }
 
+.user {
+  background: center/120% no-repeat url(../images/user.svg);
+}
+
+main:has(.msg-wrapper) {
+  padding: 0;
+  max-height: 85vh;
+  max-width: 50rem;
+}
+
+.msg-wrapper {
+  scrollbar-color: #4f46e5 #999;
+}
+
 label {
   display: block;
   font-weight: 500;
