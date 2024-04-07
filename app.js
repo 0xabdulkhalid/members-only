@@ -9,6 +9,7 @@ const MongoStore = require("connect-mongo");
 require("dotenv").config();
 const indexRouter = require("./routes/index");
 const userRouter = require("./routes/user");
+const messagesRouter = require("./routes/messages");
 
 const mongoDB = process.env.MONGO_URI;
 mongoose.set("strictQuery", false);
@@ -16,7 +17,6 @@ mongoose.connect(mongoDB);
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "mongo connection error"));
 
-const User = require("./models/user");
 const app = express();
 
 // view engine setup
@@ -52,6 +52,7 @@ app.use((req, res, next) => {
 
 app.use("/", indexRouter);
 app.use("/user", userRouter);
+app.use("/messages", messagesRouter);
 
 require("./passport-config");
 
