@@ -5,18 +5,37 @@ block content
         if messages.length 
             each message in messages
                 div(class="-z-10 px-16") 
-                    if user.isMember || user.isAdmin 
+                    if user.isMember
                         div(class="flex gap-2 mb-3 items-center") 
                             div(class="w-8 h-8 rounded-full user")
                             p(class="font-medium")=message.author
-                    div(class="rounded-md outline outline-1 outline-primary bg-indigo-100 p-2 md:px-4 md:py-3") 
-                        p(class="text-gray-900")=message.text
-                        if user.isMember || user.isAdmin 
+                    div(class="rounded-md outline outline-1 outline-primary bg-indigo-100 p-2 md:p-3") 
+                        p(class="text-gray-900 whitespace-pre-line")=message.text
+                        if user.isMember
                             p(class="text-xs text-end text-gray-600 mt-3")=message.createdAt.toLocaleString()
         else 
             p(class="self-center text-lg") There's no messages here, please check out later.
     div(class="w-full pb-3 md:pb-8 px-4 md:px-8 shadow-[0_-20px_20px_#f9fafb] bg-gray-50 absolute bottom-0") 
-        form(class="w-full flex gap-2" action="" method="POST")
-            label(for="content" class="sr-only") Message
-            input(name="content" required id="content" placeholder="Enter your Message...")
-            button(class="btn-primary outline-1 outline outline-indigo-600") Send
+        if user.isMember
+            form(class="w-full flex gap-2" action="" method="POST" onsubmit="handleSubmit(event)")
+                label(for="content" class="sr-only") Message
+                p(contenteditable="true" spellcheck="false" class="field" data-placeholder="Enter your message here" onkeydown="handleKeyDown(event)")
+                input(type="hidden" required name="content" id="content")
+                button(class="btn-primary self-end outline-1 outline outline-indigo-600 md:py-[.6rem]") Send
+
+    script.
+        function handleKeyDown(event) {  // Hit CTRL+ENTER to Send Message otherwise Hit Enter to go next line 
+            const contentField = event.target;
+            const form = contentField.closest('form');
+            
+            if (event.key === 'Enter' && event.ctrlKey) {
+                event.preventDefault();
+                form.requestSubmit();
+            }
+        }
+        function handleSubmit(event) {  // Transfer message from Paragraph to hidden Input element before submitting the form
+            const form = event.target;
+            if (form.children[1].textContent.trim() === "") return event.preventDefault();
+
+            form.children[2].value = form.children[1].innerHTML.replace(/<br>/g, '\n');
+        }
