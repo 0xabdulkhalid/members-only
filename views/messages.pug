@@ -1,10 +1,10 @@
 extends layout 
 
 block content
-    div(class="msg-wrapper max-h-[83vh] shadow-[inset_0_20px_20px_#f9fafb] overflow-y-scroll pt-6 px-4 md:px-2 pb-[4.5rem] md:pb-24 self-start w-full flex flex-col gap-6") 
+    div(class="msg-wrapper max-h-[83vh] overflow-y-scroll pt-6 px-4 md:px-2 pb-[4.5rem] md:pb-24 self-start w-full flex flex-col gap-6" onclick="deleteMessage(event)") 
         if messages.length 
             each message in messages
-                div(class="-z-10 md:px-16") 
+                div(class="md:px-16") 
                     if user.isMember
                         div(class="flex gap-2 mb-3 items-center") 
                             div(class="w-8 h-8 rounded-full user")
@@ -13,6 +13,7 @@ block content
                         p(class="text-gray-900 whitespace-pre-line")=message.text
                         if user.isMember
                             p(class="text-xs text-end text-gray-600 mt-3")=message.createdAt.toLocaleString()
+                        button(class="btn-primary bg-red-500 hover:bg-red-600 w-full" data-id=message._id) Delete
         else 
             p(class="self-center text-lg") There's no messages here, please check out later.
     div(class="w-full pb-3 md:pb-8 px-4 md:px-8 shadow-[0_-20px_20px_#f9fafb] bg-gray-50 absolute bottom-0") 
@@ -22,11 +23,38 @@ block content
                 p(contenteditable="true" class="relative word-wrap-any" spellcheck="false" class="field" data-placeholder="Enter your message here" data-count="0" onkeyup="handleKeyUp(event)")
                 input(type="hidden" required name="content" id="content")
                 button(class="btn-primary self-end outline-1 outline outline-indigo-600 md:py-[.6rem]") Send
+    if user.isAdmin 
+        div(class="confirm fixed inset-0 z-10 bg-[#0005] grid place-items-center transition-opacity duration-500 opacity-0" inert)
+            div(class="bg-gray-50 rounded-md p-3 w-11/12 md:w-96 flex flex-col justify-between items-center")
+                img(src="./images/warning.svg" alt="" class="w-20 h-20 mt-2")
+                p(class="text-2xl font-medium mt-2") Are you sure?
+                div(class="flex justify-between items-center w-full mt-10")
+                    button(class="btn-primary" onclick="cancelDeletion(event)") Cancel 
+                    form(action="/messages/delete" method="POST") 
+                        input(type="hidden" name="messageId" value="")
+                        button(class="btn-primary bg-red-500 hover:bg-red-600") Delete
 
     script.
+        const deleteForm = document.querySelector('.confirm');
+        function deleteMessage(event) {
+            if (event.target.dataset.id) {
+                deleteForm.removeAttribute('inert')
+                deleteForm.querySelector('input').value = event.target.dataset.id
+                deleteForm.style.opacity = 1
+            }
+        }
+        function cancelDeletion(event) {
+            deleteForm.setAttribute('inert', '')
+            deleteForm.querySelector('input').value = ''
+            event.target.offsetParent.style.opacity = 0
+        }
         function handleKeyUp(event) {  // Hit CTRL+ENTER to Send Message otherwise Hit Enter to go next line 
             const contentField = event.target;
             const form = contentField.closest('form');
+
+            if (!contentField.textContent.length) {
+                contentField.textContent = ""
+            };
 
             contentField.dataset.count = contentField.textContent.length
             
@@ -37,7 +65,11 @@ block content
         }
         function handleSubmit(event) {  // Transfer message from Paragraph to hidden Input element before submitting the form
             const form = event.target;
-            if (form.children[1].textContent.trim() === "") return event.preventDefault();
+
+            if (form.children[1].textContent.trim() === "") {
+                form.children[1].textContent = ""
+                return event.preventDefault()
+            };
 
             form.children[2].value = form.children[1].innerHTML.replace(/<br>/g, '\n');
         }

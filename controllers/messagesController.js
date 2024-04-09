@@ -12,7 +12,13 @@ exports.create_message = asyncHandler(async (req, res, next) => {
 });
 
 exports.show_messages = asyncHandler(async (req, res, next) => {
-  const allMessages = await Message.find({}).sort({ createdAt: 1 }).exec();
+  const allMessages = await Message.find({});
 
   res.render("messages", { messages: allMessages });
+});
+
+exports.delete_message = asyncHandler(async (req, res, next) => {
+  await Message.findByIdAndDelete(req.body.messageId);
+
+  res.redirect("/messages");
 });
