@@ -14,7 +14,7 @@ exports.create_message = asyncHandler(async (req, res, next) => {
 exports.show_messages = asyncHandler(async (req, res, next) => {
   const allMessages = await Message.find({});
 
-  res.render("messages", { messages: allMessages });
+  res.render("messages", { messages: allMessages, title: "Messages" });
 });
 
 exports.delete_message = asyncHandler(async (req, res, next) => {

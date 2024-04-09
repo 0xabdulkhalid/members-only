@@ -3,19 +3,19 @@ const router = express.Router();
 const usersController = require("../controllers/usersController");
 
 router.get("/sign-up", (req, res, next) => {
-  res.render("sign-up");
+  res.render("sign-up", { title: "Sign Up" });
 });
 
 router.get("/login", (req, res, next) => {
-  res.render("login");
+  res.render("login", { title: "Login" });
 });
 
 router.get("/join-club", (req, res, next) => {
-  res.render("join-club");
+  res.render("join-club", { title: "Join Club" });
 });
 
 router.get("/become-admin", (req, res, next) => {
-  res.render("become-admin");
+  res.render("become-admin", { title: "Become Admin" });
 });
 
 router.post("/join-club", usersController.become_member);
