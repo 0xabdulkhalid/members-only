@@ -13,7 +13,7 @@ block content
                         p(class="text-gray-900 whitespace-pre-line")=message.text
                         if user.isMember
                             p(class="text-xs text-end text-gray-600 mt-3")=message.createdAt.toLocaleString()
-                        button(class="btn-primary bg-red-500 hover:bg-red-600 w-full" data-id=message._id) Delete
+                            button(class="btn-primary bg-red-500 hover:bg-red-600 w-full" data-id=message._id) Delete
         else 
             p(class="self-center text-lg") There's no messages here, please check out later.
     div(class="w-full pb-3 md:pb-8 px-4 md:px-8 shadow-[0_-20px_20px_#f9fafb] bg-gray-50 absolute bottom-0") 
