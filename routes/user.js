@@ -3,7 +3,7 @@ const router = express.Router();
 const usersController = require("../controllers/usersController");
 
 router.get("/sign-up", (req, res, next) => {
-  res.render("sign-up", { title: "Sign Up" });
+  res.render("sign-up", { title: "Sign Up", formData: {} });
 });
 
 router.get("/login", (req, res, next) => {

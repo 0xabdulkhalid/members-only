@@ -2,26 +2,57 @@ const asyncHandler = require("express-async-handler");
 const bcrypt = require("bcryptjs");
 const User = require("../models/user");
 const passport = require("passport");
+const { body, validationResult } = require("express-validator");
 require("dotenv").config;
 
-exports.create_user = asyncHandler(async (req, res, next) => {
-  bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
-    const user = new User({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      mail: req.body.mail,
-      password: hashedPassword,
-    });
-    const result = await user.save();
-
-    req.login(user, function (err) {
-      if (err) {
-        return next(err);
+exports.create_user = [
+  body("firstName", "First Name is required.").trim().isLength({ min: 1 }),
+  body("lastName", "Last Name is required.").trim().isLength({ min: 1 }),
+  body("mail", "Not a valid E-mail address.")
+    .isEmail()
+    .custom(async (value) => {
+      const existingUser = await User.findOne({ mail: value });
+      if (existingUser) {
+        throw new Error("E-mail address already in use.");
       }
-      return res.redirect("/");
+    }),
+  body("password", "Password should be at least 8 characters.")
+    .trim()
+    .isLength({ min: 8 }),
+  body("confirm", "Passwords does not match.")
+    .trim()
+    .custom((value, { req }) => value !== req.body.password),
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+
+    bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
+      const user = new User({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        mail: req.body.mail,
+        password: hashedPassword,
+      });
+
+      if (!errors.isEmpty()) {
+        user.password = req.body.password;
+        res.render("sign-up", {
+          title: "Sign Up",
+          formData: user,
+          errors: errors.mapped(),
+        });
+      } else {
+        const result = await user.save();
+
+        req.login(user, function (err) {
+          if (err) {
+            return next(err);
+          }
+          return res.redirect("/");
+        });
+      }
     });
-  });
-});
+  }),
+];
 
 exports.login_user = passport.authenticate("local", {
   successRedirect: "/",

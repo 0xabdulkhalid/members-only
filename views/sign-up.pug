@@ -6,18 +6,28 @@ block content
         div(class="md:grid grid-cols-2 gap-3") 
             div
                 label(for="firstName") First Name
-                input(name="firstName" required id="firstName" placeholder="Abdul")
+                input(name="firstName" id="firstName" placeholder="Abdul" value=formData.firstName || "")
+                if errors && errors.firstName
+                    p(class="mt-2 ml-2 font-medium text-red-500 md:text-sm") » #{errors.firstName.msg}
             div 
                 label(for="lastName") Last Name
-                input(name="lastName" required id="lastName" placeholder="Khalid")
+                input(name="lastName" id="lastName" placeholder="Khalid" value=formData.lastName || "")
+                if errors && errors.lastName
+                    p(class="mt-2 ml-2 font-medium text-red-500 md:text-sm") » #{errors.lastName.msg}
         div 
             label(for="mail") Mail
-            input(name="mail" required id="mail" type="mail" placeholder="0xabdulkhalid@gmail.com")  
+            input(name="mail" id="mail" type="mail" placeholder="0xabdulkhalid@gmail.com" value=formData.mail || "")
+            if errors && errors.mail
+                p(class="mt-2 ml-2 font-medium text-red-500 md:text-sm") » #{errors.mail.msg}  
         div(class="md:grid grid-cols-2 gap-3") 
             div 
                 label(for="password") Password 
-                input(name="password" required id="password" type="password")
+                input(name="password" id="password" type="password" value=formData.password || "")
+                if errors && errors.password
+                    p(class="mt-2 ml-2 font-medium text-red-500 md:text-sm") » #{errors.password.msg}
             div 
                 label(for="confirm") Confirm Password 
-                input(name="confirm" required id="confirm" type="password")
+                input(name="confirm" id="confirm" type="password" value=formData.confirm || "")
+                if errors && errors.confirm
+                    p(class="mt-2 ml-2 font-medium text-red-500 md:text-sm") » #{errors.confirm.msg}
         button(class="btn-primary mt-6 mx-auto mb-6 md:w-full md:py-3 md:tracking-widest") Submit
