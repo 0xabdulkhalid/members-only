@@ -54,11 +54,31 @@ exports.create_user = [
   }),
 ];
 
-exports.login_user = passport.authenticate("local", {
-  successRedirect: "/",
-  failureRedirect: "/user/login",
-});
+exports.login_user = (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
 
+    if (!user) {
+      console.log(req);
+      return res.render("login", {
+        title: "Login",
+        errors: info.message,
+        mail: req.body.username,
+        password: req.body.password,
+      });
+    }
+
+    req.login(user, (err) => {
+      if (err) {
+        return next(err);
+      }
+
+      return res.redirect("/");
+    });
+  })(req, res, next);
+};
 exports.logout_user = async (req, res, next) => {
   req.logout((err) => {
     if (err) {

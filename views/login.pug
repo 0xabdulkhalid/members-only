@@ -6,8 +6,12 @@ block content
         div
             //- Naming mail as "username" is not appropriate, but using "passport-local" strategy forces me to do so.
             label(for="username") Mail
-            input(name="username" required id="username" type="mail" placeholder="0xabdulkhalid@gmail.com")  
+            input(name="username" required id="username" type="mail" placeholder="0xabdulkhalid@gmail.com" value=mail || "") 
+            if errors && (errors.split(' ')[1] === 'Mail')
+                p(class="mt-2 ml-2 font-medium text-red-500 md:text-sm") » #{errors}
         div 
             label(for="password") Password 
-            input(name="password" required id="password" type="password")
+            input(name="password" required id="password" type="password" value=password || "")
+            if errors && (errors.split(' ')[1] === 'Password')
+                p(class="mt-2 ml-2 font-medium text-red-500 md:text-sm") » #{errors}
         button(class="btn-primary mt-6 mx-auto mb-6 md:w-full md:py-3 md:tracking-widest") Submit

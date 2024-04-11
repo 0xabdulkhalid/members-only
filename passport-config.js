@@ -9,11 +9,11 @@ passport.use(
       // Naming mail as "username" is not appropriate, but using "passport-local" strategy forces me to do so
       const user = await User.findOne({ mail: username });
       if (!user) {
-        return done(null, false, { message: "Incorrect mail" });
+        return done(null, false, { message: "Incorrect Mail" });
       }
       const match = await bcrypt.compare(password, user.password);
       if (!match) {
-        return done(null, false, { message: "Incorrect password" });
+        return done(null, false, { message: "Incorrect Password" });
       }
       return done(null, user);
     } catch (err) {
