@@ -1,4 +1,5 @@
 extends layout 
+include errorMessage
 
 block content 
     h1(class="font-semibold mb-2 text-3xl md:text-5xl") Become a #[span(class="text-primary") Admin]
@@ -7,4 +8,6 @@ block content
     form(class="w-full px-2" action="" method="POST")
         label(for="passcode") Secret Passcode
         input(name="passcode" required id="passcode" type="password" placeholder="XXXXXX")
+        if throwError 
+            +errorMessage('Incorrect Passcode')
         button(class="btn-primary mt-3 mx-auto mb-6 md:w-full md:py-3 md:tracking-widest") Verify
