@@ -1,4 +1,5 @@
 extends layout 
+include errorMessage
 
 block content
     h1(class="font-semibold text-primary mb-2 text-3xl md:text-5xl md:mb-6") Sign Up 
@@ -7,27 +8,27 @@ block content
             div
                 label(for="firstName") First Name
                 input(name="firstName" id="firstName" placeholder="Abdul" value=formData.firstName || "")
-                if errors && errors.firstName
-                    p(class="mt-2 ml-2 font-medium text-red-500 md:text-sm") » #{errors.firstName.msg}
+                if (errors && errors.firstName)
+                    +errorMessage(errors.firstName.msg)
             div 
                 label(for="lastName") Last Name
                 input(name="lastName" id="lastName" placeholder="Khalid" value=formData.lastName || "")
-                if errors && errors.lastName
-                    p(class="mt-2 ml-2 font-medium text-red-500 md:text-sm") » #{errors.lastName.msg}
+                if (errors && errors.lastName)
+                    +errorMessage(errors.lastName.msg)
         div 
             label(for="mail") Mail
             input(name="mail" id="mail" type="mail" placeholder="0xabdulkhalid@gmail.com" value=formData.mail || "")
-            if errors && errors.mail
-                p(class="mt-2 ml-2 font-medium text-red-500 md:text-sm") » #{errors.mail.msg}  
+            if (errors && errors.mail)
+                +errorMessage(errors.mail.msg)
         div(class="md:grid grid-cols-2 gap-3") 
             div 
                 label(for="password") Password 
                 input(name="password" id="password" type="password" value=formData.password || "")
-                if errors && errors.password
-                    p(class="mt-2 ml-2 font-medium text-red-500 md:text-sm") » #{errors.password.msg}
+                if (errors && errors.password)
+                    +errorMessage(errors.password.msg)
             div 
                 label(for="confirm") Confirm Password 
                 input(name="confirm" id="confirm" type="password" value=formData.confirm || "")
-                if errors && errors.confirm
-                    p(class="mt-2 ml-2 font-medium text-red-500 md:text-sm") » #{errors.confirm.msg}
+                if (errors && errors.confirm)
+                    +errorMessage(errors.confirm.msg)
         button(class="btn-primary mt-6 mx-auto mb-6 md:w-full md:py-3 md:tracking-widest") Submit

@@ -61,7 +61,6 @@ exports.login_user = (req, res, next) => {
     }
 
     if (!user) {
-      console.log(req);
       return res.render("login", {
         title: "Login",
         errors: info.message,
