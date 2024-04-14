@@ -3,18 +3,28 @@ const router = express.Router();
 const usersController = require("../controllers/usersController");
 
 router.get("/sign-up", (req, res, next) => {
+  if (req.isAuthenticated()) return res.redirect("/");
+
   res.render("sign-up", { title: "Sign Up", formData: {} });
 });
 
 router.get("/login", (req, res, next) => {
+  if (req.isAuthenticated()) return res.redirect("/");
+
   res.render("login", { title: "Login" });
 });
 
 router.get("/join-club", (req, res, next) => {
+  if (!req.isAuthenticated() || (req.user && req.user.isMember))
+    return res.redirect("/");
+
   res.render("join-club", { title: "Join Club" });
 });
 
 router.get("/become-admin", (req, res, next) => {
+  if (!req.isAuthenticated() || (req.user && req.user.isAdmin))
+    return res.redirect("/");
+
   res.render("become-admin", { title: "Become Admin" });
 });
 
