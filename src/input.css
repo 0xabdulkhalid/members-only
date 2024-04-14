@@ -23,6 +23,10 @@
   background: center/120% no-repeat url(../images/user.svg);
 }
 
+.trash {
+  background: center/50% no-repeat url(../images/trash.svg), #ef4444;
+}
+
 main:has(.msg-wrapper) {
   padding: 0;
   max-height: 85vh;
