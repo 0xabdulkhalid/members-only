@@ -2,8 +2,8 @@ const express = require("express");
 const path = require("path");
 const session = require("express-session");
 const passport = require("passport");
+const cookieParser = require("cookie-parser");
 const createError = require("http-errors");
-// const logger = require("morgan");
 const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo");
 require("dotenv").config();
@@ -11,17 +11,25 @@ const indexRouter = require("./routes/index");
 const userRouter = require("./routes/user");
 const messagesRouter = require("./routes/messages");
 
+const app = express();
+
+const RateLimit = require("express-rate-limit");
+const limiter = RateLimit({
+  windowMs: 1 * 60 * 1000, // 1 Minute
+  max: 100, // Limit each IP to 100 requests per Window
+});
+app.use(limiter);
+
 const mongoDB = process.env.MONGO_URI;
 mongoose.set("strictQuery", false);
 mongoose.connect(mongoDB);
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "mongo connection error"));
 
-const app = express();
-
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
+app.use(cookieParser());
 
 app.use(
   session({
@@ -41,7 +49,6 @@ app.use(
   })
 );
 app.use(passport.session());
-// app.use(logger("dev"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 

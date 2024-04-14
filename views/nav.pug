@@ -5,9 +5,9 @@ nav(class="flex justify-center items-center")
         ul(id="navMenu" class="flex transition-opacity invisible opacity-0 duration-500 gap-3 p-4 bg-gray-200 absolute top-12 left-0 w-full items-center")
             if user 
                 if !user.isMember 
-                    li(class="w-full"): a(href="/user/join-club" class="btn-primary") Join The Club
+                    li(class="w-full"): a(href="/user/join-club" class="btn-primary") Join Club
                 if user.isMember && !user.isAdmin
-                    li(class="w-full"): a(href="/user/become-admin" class="btn-primary") Become an Admin
+                    li(class="w-full"): a(href="/user/become-admin" class="btn-primary") Become Admin
                 li(class="w-full"): a(href="/user/log-out" class="btn-primary") Logout
             else 
                 li(class="w-full"): a(href="/user/sign-up" class="btn-primary") Sign Up
