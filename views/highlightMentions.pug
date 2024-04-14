@@ -1,0 +1,8 @@
+mixin highlightMentions(text)
+  - const regex = /@(\w+)/g
+  - const parts = text.split(regex)
+  each part, index in parts
+    if index % 2 === 0
+      | #{part}
+    else
+      span(class="bg-indigo-200 text-[.8rem] md:text-sm outline outline-1 outline-indigo-400 p-1 rounded-md text-indigo-900") @#{part}
