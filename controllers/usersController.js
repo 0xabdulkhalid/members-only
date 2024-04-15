@@ -21,7 +21,7 @@ exports.create_user = [
     .isLength({ min: 8 }),
   body("confirm", "Passwords does not match.")
     .trim()
-    .custom((value, { req }) => value !== req.body.password),
+    .custom((value, { req }) => value === req.body.password),
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
 
