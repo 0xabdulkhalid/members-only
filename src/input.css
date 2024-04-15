@@ -59,7 +59,7 @@ label {
 }
 
 .field::after {
-  content: attr(data-count) " / 200";
+  content: attr(data-count) " / 485";
   opacity: 0.8;
   font-size: 0.75rem;
   pointer-events: none;

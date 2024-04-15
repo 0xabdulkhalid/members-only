@@ -39,7 +39,7 @@
    - Congrats, now you're a member of the clubhouse! Go back to the homepage and see who wrote each message and when.
 4. If you want to help moderate this site, you'll have to become an admin
    - Click **Become an Admin** (you have to be a member first in order to see this link)
-   - Enter the secret passcode "`p4$$w0rd`" to gain your admin privileges.
+   - Enter the secret passcode "`MakeMeAdmin`" to gain your admin privileges.
    - Congrats, now you're an admin! Go back to the homepage and delete messages as you see fit.
 
 <br>

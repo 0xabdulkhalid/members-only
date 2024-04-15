@@ -61,6 +61,11 @@ block content
                 contentField.textContent = ""
             };
 
+            if (contentField.textContent.length > 485) {
+                contentField.innerText = contentField.innerText.substring(0, 485);
+                contentField.blur()
+            }
+
             contentField.dataset.count = contentField.textContent.length
             
             if (event.key === 'Enter' && event.ctrlKey) {
