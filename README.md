@@ -23,7 +23,7 @@
 <br>
 
 <div align='center'>
-<img src='https://github.com/0xabdulkhalid/members-only/assets/92252895/87ae4bfe-3900-4a13-98a6-41332b053115' alt='Desktop Preview'>
+<img src='https://github.com/0xabdulkhalid/members-only/assets/92252895/3981d3f0-a64b-4485-84cc-46c51fa6a3a0' alt='Desktop Preview'>
 </div>
 
 ## How to Use
