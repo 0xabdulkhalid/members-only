@@ -45,6 +45,9 @@ app.use(
     }),
     cookie: {
       maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days in milliseconds
+      httpOnly: true, // Prevent client-side access using JavaScript
+      sameSite: 'strict', // Prevent cross-site requests, Saving app from CSRF like attacks
+      secure: true, // Site is served over HTTPS on Glitch's Free Tier
     },
   })
 );
