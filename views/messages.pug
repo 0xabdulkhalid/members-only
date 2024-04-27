@@ -20,7 +20,7 @@ block content
         else 
             p(class="self-center text-lg") There's no messages here, please check out later.
     div(class="w-full pb-3 md:pb-8 px-4 md:px-8 shadow-[0_-20px_20px_#f9fafb] bg-gray-50 absolute bottom-0") 
-        if user
+        if user && user.isMember
             form(class="w-full flex gap-2" action="" method="POST" onsubmit="handleSubmit(event)")
                 label(for="content" class="sr-only") Message
                 p(contenteditable="true" class="relative word-wrap-any" spellcheck="false" class="field" data-placeholder="Enter your message here" data-count="0" onkeyup="handleKeyUp(event)")
